@@ -32,7 +32,7 @@ console.log(oneDay);
 
 /*
 Сколько типов данных существует в JS?
-num, string, obj, symbol, null,
+num, string, obj, symbol, null, boolean, undefined 
 
 Как вывести информацию в консоль?
 consol.log(...)
