@@ -23,3 +23,7 @@ menu.insertBefore(oldMenu[2], menuItems[1]);
 //menu.insertBefore(oldMenu[2])
 menu.appendChild(menpunkt);
 
+let text = prompt("Спросить у пользователя отношение к технике apple и записать ответ в блок на странице с id");
+
+document.querySelector('#prompt').textContent = text;
+
