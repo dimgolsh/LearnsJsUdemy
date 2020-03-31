@@ -109,6 +109,18 @@ window.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+let message = {
+  loading: 'Загрзука...',
+  success: 'Спасибо! Скоро мы с вами свяжемся',
+  failure: 'Что-то пошло не так..'
+};
+
+let form = document.querySelector('.main-form'),
+    input = form.querySelector('input'),
+    statusMessage = document.createElement('div');
+
+    statusMessage.classList.add('status');
+    
 class Timer {
   
 
