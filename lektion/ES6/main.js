@@ -83,3 +83,13 @@ let video = ['youtube', 'vimeo', 'rutube'],
 let numbers = [2,5,7];
 
 log(...numbers);
+
+
+function pow(a,b){
+    let c =a;
+    for (let i =1; i<b; i++){
+        c*=a;
+    }
+    return c;
+} 
+console.log(pow(3,3));
