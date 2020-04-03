@@ -15,7 +15,7 @@ class WhoAmI extends Component {
     };
     //способ1
     //this.nextYear = this.nextYear.bind(this);
-
+    
     //способ2
     this.nextYear = () => {
       this.setState(state => ({
@@ -65,5 +65,5 @@ const All = () => {
   );
 }
 ReactDOM.render(
-    <App/>,document.getElementById("root")
+    <All/>,document.getElementById("root")
 );
