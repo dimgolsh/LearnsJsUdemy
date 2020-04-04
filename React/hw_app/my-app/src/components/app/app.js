@@ -27,9 +27,9 @@ export default class App extends Component  {
     this.state = {
       data : [
 
-        {label: 'Going to lear React', important:true, id:  1},
-        {label: 'Good', important:false, id:2},
-        {label: 'I need break', important:false, id:3},
+        {label: 'Going to lear React', important:true, like:false, id:  1},
+        {label: 'Good', important:false, like:false, id:2},
+        {label: 'I need break', important:false, like:false, id:3},
       ]
     };
     this.deleteItem = this.deleteItem.bind(this);
@@ -66,15 +66,42 @@ export default class App extends Component  {
     })
   }
   onToggleImportant(id){
-    console.log(id);
+    this.setState(({data})=>{
+      const index = data.findIndex((elem)=> elem.id === id);
+      const old = data[index];
+      const newItem = {...old, important: !old.important };
+      
+      const newArr = [...data.slice(0,index),newItem,...data.slice(index+1)];
+
+      return {
+        data: newArr
+      }
+  })
   }
   onToggleLiked(id){
-    console.log(id);
+    this.setState(({data})=>{
+        const index = data.findIndex((elem)=> elem.id === id);
+        const old = data[index];
+        const newItem = {...old, like: !old.like };
+        
+        const newArr = [...data.slice(0,index),newItem,...data.slice(index+1)];
+
+        return {
+          data: newArr
+        }
+    })
   }
   render() {
+
+    const liked = this.state.data.filter(item => item.like).length;
+    const allPosts = this.state.data.length;
+
     return (
       <AppBlock>
-        <AppHeader />
+        <AppHeader 
+        liked = {liked}
+        allPosts = {allPosts}
+        />
         <div className="search-panel d-flex">
           <SearchPanel />
           <PostStatusFilter />
