@@ -24,7 +24,7 @@ const data = [
 ];
 const App = () => {
   return (
-    <div className={style.app}>
+    <AppBlock>
       <AppHeader />
       <div className="search-panel d-flex">
         <SearchPanel />
@@ -32,7 +32,7 @@ const App = () => {
       </div>
       <PostList posts={data} />
       <PostAddForm />
-    </div>
+    </AppBlock>
   );
 };
 
