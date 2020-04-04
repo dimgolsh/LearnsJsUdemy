@@ -40,6 +40,7 @@ export default class App extends Component  {
     this.onToggleLiked = this.onToggleLiked.bind(this);
     this.onUpdateSearch = this.onUpdateSearch.bind(this);
     this.onFilterSelect = this.onFilterSelect.bind(this);
+    this.editState = this.editState.bind(this);
     this.maxId = 4;
   }
   deleteItem(id){
@@ -70,11 +71,18 @@ export default class App extends Component  {
     });
   }
   onToggleImportant(id){
+    this.editState(id,'important');
+  }
+  
+  editState(id,valuef){
+
     this.setState(({data})=>{
       const index = data.findIndex((elem)=> elem.id === id);
       const old = data[index];
-      const newItem = {...old, important: !old.important };
-      
+      const obj = {
+        [valuef]: !old[valuef]
+      };
+      const newItem = {...old, ...obj };
       const newArr = [...data.slice(0,index),newItem,...data.slice(index+1)];
 
       return {
@@ -83,17 +91,7 @@ export default class App extends Component  {
   });
   }
   onToggleLiked(id){
-    this.setState(({data})=>{
-        const index = data.findIndex((elem)=> elem.id === id);
-        const old = data[index];
-        const newItem = {...old, like: !old.like };
-        
-        const newArr = [...data.slice(0,index),newItem,...data.slice(index+1)];
-
-        return {
-          data: newArr
-        };
-    });
+    this.editState(id,'like');
   }
   searchPost(items, term){
 
