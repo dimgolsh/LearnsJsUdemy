@@ -27,21 +27,41 @@ export default class App extends Component  {
     this.state = {
       data : [
 
-        {label: 'Going to lear React', important:true, id:'efefef'},
-        {label: 'Good', important:false, id:'effef'},
-        {label: 'I need break', important:false, id:'efegef'},
+        {label: 'Going to lear React', important:true, id:  1},
+        {label: 'Good', important:false, id:2},
+        {label: 'I need break', important:false, id:3},
       ]
     };
     this.deleteItem = this.deleteItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.maxId = 4;
   }
   deleteItem(id){
     this.setState(({data})=>{
       const index = data.findIndex(elem => elem.id === id );
-      data.splice(index, 1);
+      const before = data.slice(0, index);
+      const after = data.slice(index+1);
+
+      const newArr = [...before, ...after];
+
       return {
-        data: data
+        data: newArr
       }
     });
+  }
+  addItem(body){
+    const newItem  = {
+      label: body,
+      important: false,
+      id: this.maxId++
+    }
+    this.setState(({data})=>{
+      const newArr = [...data, newItem];
+
+      return {
+        data: newArr
+      }
+    })
   }
   render() {
     return (
@@ -54,7 +74,9 @@ export default class App extends Component  {
         <PostList posts={this.state.data}
           onDelete ={this.deleteItem}      
         />
-        <PostAddForm />
+        <PostAddForm 
+          onAdd = {this.addItem}
+        />
       </AppBlock>
     );
   }
