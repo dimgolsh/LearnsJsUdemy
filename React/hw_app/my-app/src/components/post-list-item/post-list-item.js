@@ -16,13 +16,13 @@ export default class PostListItem extends Component {
     console.log('ddd');
     this.setState(({important}) =>({
       important: !important
-    }))
+    }));
   }
   onLike() {
     console.log('ddd');
     this.setState(({like}) =>({
       like: !like
-    }))
+    }));
   }
   render() {
 

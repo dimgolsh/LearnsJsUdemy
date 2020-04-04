@@ -48,7 +48,7 @@ export default class App extends Component  {
 
       return {
         data: newArr
-      }
+      };
     });
   }
   addItem(body){
@@ -56,14 +56,14 @@ export default class App extends Component  {
       label: body,
       important: false,
       id: this.maxId++
-    }
+    };
     this.setState(({data})=>{
       const newArr = [...data, newItem];
 
       return {
         data: newArr
-      }
-    })
+      };
+    });
   }
   onToggleImportant(id){
     this.setState(({data})=>{
@@ -75,8 +75,8 @@ export default class App extends Component  {
 
       return {
         data: newArr
-      }
-  })
+      };
+  });
   }
   onToggleLiked(id){
     this.setState(({data})=>{
@@ -88,8 +88,8 @@ export default class App extends Component  {
 
         return {
           data: newArr
-        }
-    })
+        };
+    });
   }
   render() {
 
