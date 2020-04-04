@@ -1,38 +1,37 @@
-import React from 'react';
+import React from "react";
 
-import PostListItem from '../post-list-item';
-import { ListGroup } from 'reactstrap';
-import './post-list.css';
+import PostListItem from "../post-list-item";
+import { ListGroup } from "reactstrap";
+import "./post-list.css";
 
-const PostList = ({posts, onDelete}) => {
-
-    const elements = posts.filter(item => {
-        return typeof item === 'object' && isEmpty(item)
-    }).map(item => {
-        const {id, ...ItemProps} = item;
-        //e <PostListItem label= {item.label} important= {item.important}/>
-        return (
-            <li key={id} className="list-group-item">
-             <PostListItem  {...ItemProps}
-             onDelete ={()=> onDelete(id)}
-             />
-            </li>
-        )
+const PostList = ({ posts, onDelete, onToggleImportant, onToggleLiked }) => {
+  const elements = posts
+    .filter(item => {
+      return typeof item === "object" && isEmpty(item);
+    })
+    .map(item => {
+      const { id, ...ItemProps } = item;
+      //e <PostListItem label= {item.label} important= {item.important}/>
+      return (
+        <li key={id} className="list-group-item">
+          <PostListItem
+            {...ItemProps}
+            onDelete={() => onDelete(id)}
+            onToggleImportant={() => onToggleImportant(id)}
+            onToggleLiked={() => onToggleLiked(id)}
+          />
+        </li>
+      );
     });
-    function isEmpty(obj) {
-        for(let key in obj)
-        {
-            console.log(obj);
-            console.log(key);
-            return true;
-        }
-        return false;
+  function isEmpty(obj) {
+    for (let key in obj) {
+      console.log(obj);
+      console.log(key);
+      return true;
     }
-    return (
-        <ListGroup className="app-list list-group">
-           {elements}
-        </ListGroup>
-    )
-}
+    return false;
+  }
+  return <ListGroup className="app-list list-group">{elements}</ListGroup>;
+};
 
 export default PostList;
