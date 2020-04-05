@@ -12,11 +12,14 @@ export default class GotService {
       return some;
     }
   
-    getAllCharacters() {
-      return this.getResorce("/characters?page=5&pageSize=10");
+    async getAllCharacters() {
+      const res = await this.getResorce("/characters?page=5&pageSize=10");
+      return res.map(this._transformCharacter);
     }
-    getCharacter(id) {
-      return this.getResorce(`/characters/${id}`);
+    async getCharacter(id) {
+      const res = await this.getResorce(`/characters/${id}`);
+      return this._transformCharacter(res);
+
     }
     getAllBooks(){
         return this.getResorce('/books');
@@ -26,5 +29,34 @@ export default class GotService {
     }
     getHouse(id){
       return this.getResorce(`/houses/${id}`);
+    }
+
+    _transformCharacter(char){
+      return {
+        name: char.name,
+        gender: char.gender,
+        born: char.born,
+        died: char.died ? char.died : 'unknown',
+        culture: char.culture
+      };
+    }
+    _transformHouse(house){
+      return {
+        name: house.name,
+        region: house.region,
+        words: house.words,
+        titles: house.titles,
+        overlord: house.overlord,
+        ancestralWeapons: house.ancestralWeapons
+      };
+    }
+
+    _transformBook(book){
+      return {
+        name: book.name,
+        numberOfPages: book.numberOfPages,
+        publisher: book.publisher,
+        released: book.released
+      }
     }
   }
