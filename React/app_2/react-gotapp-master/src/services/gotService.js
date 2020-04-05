@@ -32,7 +32,9 @@ export default class GotService {
     }
 
     _transformCharacter(char){
+      console.log(char);
       return {
+        url: char.url.match(/\d+/gm)[0],
         name: char.name,
         gender: char.gender,
         born: char.born,
