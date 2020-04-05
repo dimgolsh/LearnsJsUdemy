@@ -4,6 +4,8 @@ import Header from "../header";
 import RandomChar from "../randomChar";
 import ItemList from "../itemList";
 import CharDetails from "../charDetails";
+import ErrorMessage from '../errorMessage';
+import CharacterPage from '../characterPage';
 
 export default class App extends Component {
   constructor() {
@@ -12,9 +14,17 @@ export default class App extends Component {
   }
 
   state = {
-    showRandomChar: true
+    showRandomChar: true,
+    selectetChar: 130,
+    error:false
   };
 
+  componentDidCatch(){
+      console.log('error');
+      this.setState({
+          error: true
+      })
+  }
   changeShow() {
     this.setState(state => {
       return {
@@ -22,7 +32,16 @@ export default class App extends Component {
       };
     });
   }
+
+  onCharSelected = (id) => {
+      this.setState({
+          selectedChar: id
+      })
+  }
   render() {
+      if(this.state.error){
+          return <ErrorMessage/>
+      }
     return (
       <>
         <Container>
@@ -37,14 +56,7 @@ export default class App extends Component {
               </button>
             </Col>
           </Row>
-          <Row>
-            <Col md="6">
-              <ItemList />
-            </Col>
-            <Col md="6">
-              <CharDetails />
-            </Col>
-          </Row>
+         <CharacterPage/>
         </Container>
       </>
     );
