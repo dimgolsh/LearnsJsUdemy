@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const ErrorMessage = () => {
-    return <span>Error messagw</span>
-}
+  return (
+    <>
+      <img src={process.env.PUBLIC_URL + '/img/got.jpg'}></img>
+      <span>Error messagw</span>
+    </>
+  );
+};
 
 export default ErrorMessage;
