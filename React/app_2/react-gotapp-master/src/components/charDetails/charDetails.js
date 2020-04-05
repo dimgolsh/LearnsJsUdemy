@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import './charDetails.css';
 import gotService from "../../services/gotService";
+import Spinner from '../spinner';
 export default class CharDetails extends Component {
 
     gotService = new gotService();
     state = {
-        char: null
+        char: null,
+        loading: true
     }
     componentDidMount(){
+        this.setState({loading:true});
         this.updateChar();
 
     }
@@ -23,7 +26,7 @@ export default class CharDetails extends Component {
         }
         this.gotService.getCharacter(charId)
         .then((char)=>{
-            this.setState({char})
+            this.setState({char, loading:false})
         })
         .catch(()=>console.log('erororor'))
     }
@@ -31,6 +34,9 @@ export default class CharDetails extends Component {
 
         if(!this.state.char){
             return <span>Erororor</span>
+        }
+        if(this.state.loading){
+            return <Spinner/>
         }
         const {name, gender, born, died, culture} = this.state.char;
         return (

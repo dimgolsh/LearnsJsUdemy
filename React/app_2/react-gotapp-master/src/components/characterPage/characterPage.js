@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Row, Container} from 'reactstrap';
+import {Col, Row} from 'reactstrap';
 import ItemList from '../itemList';
 import CharDetails from "../charDetails";
 import ErrorMessage from '../errorMessage';
@@ -13,6 +13,7 @@ export default class CharacterPage extends Component {
     }
 
     onCharSelected = (id) => {
+        console.log(id);
         this.setState({
             selectedChar: id
         })
@@ -28,7 +29,7 @@ export default class CharacterPage extends Component {
     render(){
 
         if(this.state.error){
-            return <ErrorMessage/>
+            return <ErrorMessage/>;
         }
 
         return (
