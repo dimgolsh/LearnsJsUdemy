@@ -6,7 +6,6 @@ import ItemList from "../itemList";
 import CharDetails from "../charDetails";
 
 export default class App extends Component {
-
   constructor() {
     super();
     this.changeShow = this.changeShow.bind(this);
@@ -16,15 +15,14 @@ export default class App extends Component {
     showRandomChar: true
   };
 
-  changeShow(){
-      this.setState({
-
-        showRandomChar: !this.state.showRandomChar
-      });
+  changeShow() {
+    this.setState(state => {
+      return {
+        showRandomChar: !state.showRandomChar
+      };
+    });
   }
   render() {
-
-
     return (
       <>
         <Container>
@@ -33,11 +31,10 @@ export default class App extends Component {
         <Container>
           <Row>
             <Col lg={{ size: 5, offset: 0 }}>
-              {this.state.showRandomChar ? <RandomChar /> : ''}
-              <button 
-              className="btn btn-danger mb-5"
-              onClick = {this.changeShow}
-              >Показать скрыть</button>
+              {this.state.showRandomChar ? <RandomChar /> : ""}
+              <button className="btn btn-danger mb-5" onClick={this.changeShow}>
+                Показать скрыть
+              </button>
             </Col>
           </Row>
           <Row>
