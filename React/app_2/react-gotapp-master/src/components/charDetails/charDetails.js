@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import './charDetails.css';
 import gotService from "../../services/gotService";
 import Spinner from '../spinner';
+import ErrorMessage from '../errorMessage';
 export default class CharDetails extends Component {
 
     gotService = new gotService();
     state = {
         char: null,
-        loading: true
+        loading: true,
+        error: false
     }
     componentDidMount(){
         this.setState({loading:true});
@@ -28,12 +30,15 @@ export default class CharDetails extends Component {
         .then((char)=>{
             this.setState({char, loading:false})
         })
-        .catch(()=>console.log('erororor'))
+        .catch(()=>this.setState({error:true}))
     }
     render() {
 
         if(!this.state.char){
             return <span>Erororor</span>
+        }
+        if(this.state.error){
+            return <ErrorMessage/>
         }
         if(this.state.loading){
             return <Spinner/>
