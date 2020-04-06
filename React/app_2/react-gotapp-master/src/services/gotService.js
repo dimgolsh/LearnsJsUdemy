@@ -22,9 +22,9 @@ export default class GotService {
       return this._transformCharacter(res);
 
     }
-    getAllBooks = async() => {
-        const res = await this.getResorce('/books');
-        return this._transformBook(res);
+    getAllBooks = async () => {
+        const res = await this.getResorce("/books");
+        return res.map(this._transformBook);
     }
     getBook = async (id) =>{
       const book = await this.getResorce(`/books/${id}`);

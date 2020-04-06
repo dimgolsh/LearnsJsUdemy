@@ -57,18 +57,19 @@ export default class App extends Component {
           </Row>
          <CharacterPage/>
          
-         {/* <Row>
+         <Row>
             <Col md="6">
               <ItemList
               onCharSelected = {this.onCharSelected}
               getData = {this.gotService.getAllBooks}
+              renderItem = {(item) => (<><span>{item.name}</span><button className="btn btn-info">CLickme</button></>)}
               />
             </Col>
             <Col md="6">
               <CharDetails charId = {this.state.selectedChar} />
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col md="6">
               <ItemList
               onCharSelected = {this.onCharSelected}
