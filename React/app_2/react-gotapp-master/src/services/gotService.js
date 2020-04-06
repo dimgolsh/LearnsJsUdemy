@@ -1,6 +1,7 @@
 export default class GotService {
     constructor() {
-      this._apiBase = "https://cors-anywhere.herokuapp.com/https://www.anapioficeandfire.com/api";
+      this._apiBase = "https://www.anapioficeandfire.com/api";
+      // this._apiBase = "https://cors-anywhere.herokuapp.com/https://www.anapioficeandfire.com/api";
     }
      getResorce = async(url) => {
       const res = await fetch(`${this._apiBase}${url}`);
@@ -40,11 +41,13 @@ export default class GotService {
 
     _extractId = (item) =>{
       const idRegExp = /\/([0-9]*)$/;
-      return item.url.match(idRegExp)[1];
+     // console.log(item);
+      return item.match(idRegExp)[1];
     }
-    _transformCharacter(char){
-      console.log(char);
+    _transformCharacter = (char) => {
+   //   console.log(char);
       return {
+        id: this._extractId(char.url),
         url: char.url.match(/\d+/gm)[0],
         name: char.name,
         gender: char.gender,

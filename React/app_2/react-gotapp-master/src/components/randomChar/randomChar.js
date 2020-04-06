@@ -42,7 +42,7 @@ export default class RandomChar extends Component {
       .catch(this.onError);
   }
   render() {
-    console.log('re');
+    //console.log('re');
     const { char, loading, error } = this.state;
     const spinner = loading ? <Spinner /> : null;
 
