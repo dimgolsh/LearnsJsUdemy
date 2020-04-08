@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./itemList.css";
 import Spinner from "../spinner";
 import ErrorMessage from "../errorMessage";
-
+import ItemDetails from "../itemDetails";
+import PropTypes from 'prop-types';
 export default class ItemList extends Component {
  
 
@@ -10,6 +11,16 @@ export default class ItemList extends Component {
     itemList: null,
     error: false,
   };
+
+  
+static defaultProps = {
+  onItemSelected: ()=>{}
+}
+
+static propTypes = {
+  onItemSelected: PropTypes.func,
+ // getData: PropTypes.arrayOf(PropTypes.object) 
+}
 
   componentDidCatch() {
     this.setState({ error: true });
@@ -55,8 +66,4 @@ export default class ItemList extends Component {
 
     return <ul className="item-list list-group">{items}</ul>;
   }
-}
-
-ItemList.defaultProps = {
-  onItemSelected: ()=>{}
 }
