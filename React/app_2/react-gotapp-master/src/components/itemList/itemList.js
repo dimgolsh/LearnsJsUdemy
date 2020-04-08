@@ -32,7 +32,7 @@ import GotService from '../../services/gotService';
   }
 }
 
-const withData = (View, getData) => {
+const withData = (View) => {
   return class extends Component {
     state = {
       data: null,
@@ -52,7 +52,7 @@ const withData = (View, getData) => {
       this.setState({ error: true });
     }
     componentDidMount() {
-    
+      const {getData} = this.props
 
       getData().then((data) => {
         this.setState({
@@ -77,6 +77,6 @@ const withData = (View, getData) => {
   };
 };
 
-const {getAllCharacters} = new GotService();
 
-export default withData(ItemList, getAllCharacters);
+
+export default withData(ItemList);
