@@ -1,27 +1,25 @@
 import React, { Component } from "react";
-import gotService from "../../services/gotService";
 import "./itemList.css";
 import Spinner from "../spinner";
-import ErrorMessage from '../errorMessage';
+import ErrorMessage from "../errorMessage";
 
 export default class ItemList extends Component {
-  gotService = new gotService();
+ 
 
   state = {
     itemList: null,
-    error:false
-  
+    error: false,
   };
 
-  componentDidCatch(){
-    this.setState({error:true})
+  componentDidCatch() {
+    this.setState({ error: true });
   }
   componentDidMount() {
-    const {getData} = this.props;
+    const { getData } = this.props;
 
-    getData().then(itemList => {
+    getData().then((itemList) => {
       this.setState({
-        itemList
+        itemList,
       });
     });
   }
@@ -29,15 +27,15 @@ export default class ItemList extends Component {
   renderItems(arr) {
     return arr.map((item, i) => {
       console.log(item);
-      const {id} = item;
-      const {label} = this.props.renderItem(item);
+      const { id } = item;
+      const { label } = this.props.renderItem(item);
       console.log(this.props.renderItem(item));
       return (
         <li
           key={i}
           className="list-group-item"
           data-key={item.url}
-          onClick={() => this.props.onCharSelected(item.url) }
+          onClick={() => this.props.onItemSelected(item.url)}
         >
           {this.props.renderItem(item)}
         </li>
@@ -45,8 +43,8 @@ export default class ItemList extends Component {
     });
   }
   render() {
-    if(this.state.error){
-      return <ErrorMessage/>
+    if (this.state.error) {
+      return <ErrorMessage />;
     }
     const { itemList } = this.state;
 
@@ -55,10 +53,6 @@ export default class ItemList extends Component {
     }
     const items = this.renderItems(itemList);
 
-    return (
-      <ul className="item-list list-group">
-       {items}
-      </ul>
-    );
+    return <ul className="item-list list-group">{items}</ul>;
   }
 }
