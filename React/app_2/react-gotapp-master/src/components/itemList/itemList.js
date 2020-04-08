@@ -56,3 +56,7 @@ export default class ItemList extends Component {
     return <ul className="item-list list-group">{items}</ul>;
   }
 }
+
+ItemList.defaultProps = {
+  onItemSelected: ()=>{}
+}
