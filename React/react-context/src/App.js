@@ -8,7 +8,7 @@ import MyContext from './components/Context';
 function App() {
   return (
     <div className="App">
-      <MyContext.Provider value={'Ivan'}>
+      <MyContext.Provider value={{name: 'Ivam', age: 30}}>
       <Wrapper/>
       </MyContext.Provider>
     

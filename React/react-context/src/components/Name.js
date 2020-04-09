@@ -1,21 +1,14 @@
 import React from "react";
 import MyContext from './Context';
+import { Component } from "react";
 
-const Name = () => {
-  return (
-  <MyContext.Consumer>
-      {
-          (value) => {
-              return (
-
-                <div className="name">My name is {value}</div>                
-              )
-          }
-      }
-  </MyContext.Consumer>
-  
-  
-  );
+class Name extends Component {
+ render() {
+     return (
+        <div className="name">My name is {this.context.name}</div>  
+     )
+ }
 };
 
+Name.contextType = MyContext;
 export default Name;
