@@ -1,4 +1,6 @@
 import {createStore} from 'redux';
+import reduce from './reducer';
+import {inc,dec,res} from './actions';
 
 
 
@@ -19,30 +21,11 @@ const store = {
   },
 };
 
-const reduce = (state = 0, action) => {
-  switch (action.type) {
-    case "INC":
-        return state + 1;
-        break;
-  
-      case 'DEC':
-      return state -1;
-      break;
-  
-      case 'RES':
-        return state = 0
-      default:
-        return state;
-  }
-};
 
 const reduxStore = new createStore(reduce);
+const {dispatch} = store;
 
 
-
-const inc = () => ({ type: "INC" });
-const dec = () => ({ type: "DEC" });
-const res = () => ({ type: "RES" });
 
 document.getElementById("inc").addEventListener("click", () => {
  // store.dispatch(dec());
