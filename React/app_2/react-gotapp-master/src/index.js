@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './components/app';
-import App from './components/app/appH';
+import App from './components/app';
+//import App from './components/app/appH';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
