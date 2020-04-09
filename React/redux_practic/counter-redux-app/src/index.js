@@ -1,3 +1,8 @@
+import {createStore} from 'redux';
+
+
+
+
 const store = {
   value: 0,
   subscribeF: null,
@@ -31,27 +36,37 @@ const reduce = (state = 0, action) => {
   }
 };
 
+const reduxStore = new createStore(reduce);
+
+
+
 const inc = () => ({ type: "INC" });
 const dec = () => ({ type: "DEC" });
 const res = () => ({ type: "RES" });
 
 document.getElementById("inc").addEventListener("click", () => {
-  store.dispatch(dec());
+ // store.dispatch(dec());
+  reduxStore.dispatch(dec());
 });
 document.getElementById("res").addEventListener("click", () => {
   const value = 0;
-  store.dispatch(res());
+ // store.dispatch(res());
+  reduxStore.dispatch(res());
 });
 document.getElementById("dec").addEventListener("click", () => {
-  store.dispatch(inc());
+ // store.dispatch(inc());
+  reduxStore.dispatch(inc());
 });
 
 const update = () => {
-  document.getElementById("counter").textContent = store.getState();
+ // document.getElementById("counter").textContent = store.getState();
+  document.getElementById("counter").textContent = reduxStore.getState();
 };
 
 
 store.subscribeF = update;
+
+reduxStore.subscribe(update);
 
 //store.dispatch({ type: "INC" });
 //store.dispatch({ type: "INC" });
